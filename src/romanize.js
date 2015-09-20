@@ -4,6 +4,18 @@
 
 function romanize(input) {
 
+    /*
+     Separate the number into thousands/hundreds/etc.
+
+     Each unit is processed independently in order to:
+     - obey the rule that each unit is treated / written as a separate item
+     - obey the rule that rather than repeating a number 4 times you use subtraction notation, e.g. VIIII becomes IX
+     */
+    var thousands = Math.floor(input / 1000) * 1000;
+    var hundreds = Math.floor((input - thousands) / 100) * 100;
+    var tens = Math.floor((input - thousands - hundreds) / 10) * 10;
+    var ones = input - thousands - hundreds - tens;
+
     var numerals = [
         {
             letter: 'I',
@@ -38,35 +50,7 @@ function romanize(input) {
             repeats: true
         }
     ];
-
     var result = '';
-    var ones = 0;
-    var tens = 0;
-    var hundreds = 0;
-    var thousands = 0;
-    var highestNumeral;
-
-    /*
-    Separate the number into different thousands/hundreds/etc.
-
-    Each unit is processed independently in order to:
-    - obey the rule that each unit is treated / written as a separate item
-    - obey the rule that rather than repeating a number 4 times you use subtraction notation, e.g. VIIII becomes IX
-     */
-
-    if (input >= 1000) {
-        thousands = Math.floor(input / 1000) * 1000;
-        input -= thousands;
-    }
-    if (input >= 100) {
-        hundreds = Math.floor(input / 100) * 100;
-        input -= hundreds;
-    }
-    if (input >= 10) {
-        tens = Math.floor(input / 10) * 10;
-        input -= tens;
-    }
-    if (input > 0) ones = input;
 
     convertToNumerals(thousands);
     convertToNumerals(hundreds);
@@ -82,13 +66,15 @@ function romanize(input) {
     function convertToNumerals(number) {
         if (number <= 0) return;
 
-        highestNumeral = getHighestNumeralForNumber(number);
+        var highestNumeral = getHighestNumeralForNumber(number);
 
         /*
          If we are about to start repeating a number (e.g. 9 would become VIIII), we instead switch to subtraction
          notation (eg. 9 would instead be IX)
+
+         also if it's M (the highest numeral) repeating, we want to leave it alone
          */
-        if (number / highestNumeral.number === 4) {
+        if (number / highestNumeral.number === 4 && highestNumeral.number < 1000) {
 
             /*
             If this has occurred at the start of the string, we need the numeral that's one "rank" up, otherwise we will
@@ -141,8 +127,4 @@ function romanize(input) {
     function getNextHighestNumeralFromNumeral(numeral) {
         return numerals[numerals.indexOf(numeral) + 1];
     }
-}
-
-for(var i = 1; i <= 1000; i++) {
-    console.log("%s\t-\t%s", i, romanize(i));
 }

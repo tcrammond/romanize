@@ -2,20 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Convert numbers to roman numerals</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body>
 
-    <input id="input" type="text"/>
-    <button onclick="convertToRomanNumerals()">Convert</button>
-    <div id="output"></div>
+    <div class="container">
+
+        <div class="jumbotron">
+            <h1>Convert to roman numerals</h1>
+
+            <form onsubmit="return convertToRomanNumerals()">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <input type="text" id="input" class="form-control" placeholder="Enter a number"/>
+                    </div>
+                    <div class="col-xs-1">
+                        <p>=</p>
+                    </div>
+                    <div class="col-xs-6">
+                        <p id="output"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-success btn-lg" onclick="convertToRomanNumerals()">Convert</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="../src/romanize.js"></script>
     <script>
         var input = document.getElementById("input");
         var output = document.getElementById("output");
+
         function convertToRomanNumerals() {
             output.innerHTML = romanize(input.value);
+            return false;
         }
     </script>
 </body>
