@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <input id="input" type="text"/>
+    <button onclick="convertToRomanNumerals()">Convert</button>
+    <div id="output"></div>
+
+    <script src="../src/romanize.js"></script>
+    <script>
+        var input = document.getElementById("input");
+        var output = document.getElementById("output");
+        function convertToRomanNumerals() {
+            output.innerHTML = romanize(input.value);
+        }
+    </script>
+</body>
+</html>
