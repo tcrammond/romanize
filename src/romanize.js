@@ -19,8 +19,7 @@ function romanize(input) {
     var numerals = [
         {
             letter: 'I',
-            number: 1,
-            repeats: true
+            number: 1
         },
         {
             letter: 'V',
@@ -28,8 +27,7 @@ function romanize(input) {
         },
         {
             letter: 'X',
-            number: 10,
-            repeats: true
+            number: 10
         },
         {
             letter: 'L',
@@ -37,8 +35,7 @@ function romanize(input) {
         },
         {
             letter: 'C',
-            number: 100,
-            repeats: true
+            number: 100
         },
         {
             letter: 'D',
@@ -46,8 +43,7 @@ function romanize(input) {
         },
         {
             letter: 'M',
-            number: 1000,
-            repeats: true
+            number: 1000
         }
     ];
     var result = '';
@@ -105,7 +101,7 @@ function romanize(input) {
     /**
      * Returns the highest numeral that divides into the given number
      * @param {Number} number
-     * @returns {letter, number, repeats}|{letter, number}} Roman numeral object
+     * @returns {letter, number}} Roman numeral object
      */
     function getHighestNumeralForNumber(number) {
         var highest;
@@ -122,7 +118,7 @@ function romanize(input) {
     /**
      * Returns the next highest roman numeral from the given numeral object.
      * @param {object} numeral
-     * @returns {{letter, number, repeats}|{letter, number}} Roman numeral object
+     * @returns {{letter, number}} Roman numeral object
      */
     function getNextHighestNumeralFromNumeral(numeral) {
         return numerals[numerals.indexOf(numeral) + 1];
