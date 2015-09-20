@@ -101,18 +101,14 @@ function romanize(input) {
     /**
      * Returns the highest numeral that divides into the given number
      * @param {Number} number
-     * @returns {letter, number}} Roman numeral object
+     * @returns {letter, number} Roman numeral object
      */
     function getHighestNumeralForNumber(number) {
-        var highest;
-
-        for (var i = 0; i < numerals.length; i++) {
+        for (var i = numerals.length - 1; i >= 0; i--) {
             if (number / numerals[i].number >= 1) {
-                highest = numerals[i];
+                return numerals[i];
             }
         }
-
-        return highest;
     }
 
     /**
