@@ -1,2 +1,2 @@
 # romanize
-Convert a numer to roman numerals. This was just practice.
+Convert a number to roman numerals. This was just an exercise.
