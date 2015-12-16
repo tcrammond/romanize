@@ -10,6 +10,8 @@ function romanize(input) {
      Each unit is processed independently in order to:
      - obey the rule that each unit is treated / written as a separate item
      - obey the rule that rather than repeating a number 4 times you use subtraction notation, e.g. VIIII becomes IX
+     
+     In hindsight it might have been simpler to use regex to "fix" repeating numerals after the fact.
      */
     var thousands = Math.floor(input / 1000) * 1000;
     var hundreds = Math.floor((input - thousands) / 100) * 100;
